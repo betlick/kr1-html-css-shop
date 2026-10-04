@@ -1,74 +1,67 @@
-// Получаем модальное окно по id.
+// Одна логика обслуживает форму на странице и форму внутри dialog.
 const orderDialog = document.getElementById('order-dialog');
-
-// Получаем все кнопки заказа в карточках товаров.
-const orderButtons = document.querySelectorAll('.product-card__button');
-
-// Получаем кнопку закрытия модального окна.
-const closeDialogButton = document.getElementById('close-order-dialog');
-
-// Получаем скрытое поле, в которое будет записан выбранный товар.
-const selectedProductInput = document.getElementById('selected-product');
-
-// Перебираем все кнопки «Заказать».
-orderButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    // Получаем название товара из data-атрибута.
-    const productName = button.dataset.product;
-
-    // Записываем название товара в скрытое поле формы.
-    selectedProductInput.value = productName;
-
-    // Открываем модальное окно.
-    orderDialog.showModal();
-  });
-});
-
-// Закрываем модальное окно по кнопке «Закрыть».
-closeDialogButton.addEventListener('click', () => {
-  orderDialog.close();
-});
-
-// Получаем форму заявки.
 const orderForm = document.getElementById('order-form');
-
-// Получаем сообщение об успешной отправке.
+const selectedProduct = document.getElementById('selected-product');
 const successMessage = document.getElementById('success-message');
 
-// Обрабатываем отправку формы.
-orderForm.addEventListener('submit', (event) => {
-  // Отменяем стандартную отправку формы,
-  // потому что backend пока не подключён.
-  event.preventDefault();
-
-  // Сбрасываем предыдущие признаки ошибок.
-  const formElements = Array.from(orderForm.elements);
-
-  formElements.forEach((element) => {
-    if (element.willValidate) {
-      element.removeAttribute('aria-invalid');
-    }
+function clearErrors() {
+  orderForm?.querySelectorAll('[aria-invalid]').forEach((field) => {
+    field.removeAttribute('aria-invalid');
   });
+}
 
-  // Проверяем встроенные HTML-ограничения формы.
-  if (!orderForm.checkValidity()) {
-    formElements.forEach((element) => {
-      if (element.willValidate && !element.checkValidity()) {
-        element.setAttribute('aria-invalid', 'true');
-      }
+// data-атрибут отделяет поведение от классов, отвечающих за оформление.
+if (orderDialog && orderForm && selectedProduct) {
+  document.querySelectorAll('[data-order-product]').forEach((button) => {
+    button.addEventListener('click', () => {
+      orderForm.reset();
+      clearErrors();
+      selectedProduct.value = button.dataset.orderProduct;
+      successMessage.hidden = true;
+      orderDialog.showModal();
     });
+  });
+  document.getElementById('close-order-dialog')?.addEventListener('click', () => {
+    orderDialog.close();
+  });
+}
 
-    // Показываем стандартные сообщения браузера.
-    orderForm.reportValidity();
-    return;
+if (orderForm && selectedProduct && successMessage) {
+  // На отдельную страницу можно прийти со ссылкой order.html?product=keyboard.
+  const productCode = new URLSearchParams(window.location.search).get('product');
+  if (productCode && Array.from(selectedProduct.options).some((option) => option.value === productCode)) {
+    selectedProduct.value = productCode;
   }
 
-  // Показываем сообщение об успешной отправке.
-  successMessage.hidden = false;
+  // При отключённом JS работают встроенные required, type и pattern.
+  // С JS добавляем к ним подсветку и сообщение без перезагрузки страницы.
+  orderForm.noValidate = true;
+  orderForm.addEventListener('input', (event) => {
+    const field = event.target;
+    if (field.willValidate && field.validity.valid) {
+      field.removeAttribute('aria-invalid');
+    }
+    successMessage.hidden = true;
+  });
+  orderForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    clearErrors();
+    if (!orderForm.checkValidity()) {
+      Array.from(orderForm.elements).forEach((field) => {
+        if (field.willValidate && !field.validity.valid) {
+          field.setAttribute('aria-invalid', 'true');
+        }
+      });
+      orderForm.reportValidity();
+      return;
+    }
 
-  // Очищаем форму.
-  orderForm.reset();
-
-  // Закрываем модальное окно.
-  orderDialog.close();
-});
+    const productName = selectedProduct.selectedOptions[0].textContent;
+    orderForm.reset();
+    orderDialog?.close();
+    // Учебная демонстрация: сервер не подключён, данные никуда не отправляются.
+    successMessage.textContent = `Заявка на «${productName}» заполнена корректно. Это учебная демонстрация: данные не отправлены.`;
+    successMessage.hidden = false;
+    successMessage.focus();
+  });
+}
