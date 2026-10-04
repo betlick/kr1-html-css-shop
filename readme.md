@@ -37,9 +37,6 @@ kr1-html-css-shop/
 ├── css/style.css       # Общие стили, переменные, БЭМ, состояния
 ├── js/main.js          # Модальное окно и базовая проверка формы
 ├── images/             # Локальные SVG-иллюстрации и favicon
-├── docs/
-│   ├── checklist.md    # Сопоставление с методичкой №8
-│   └── defense.md      # Пояснение реализации для защиты
 ├── sitemap.xml         # Пять страниц сайта
 ├── README.md
 └── .gitignore
