@@ -1,4 +1,4 @@
-/* 1. Общие значения: один цвет или отступ можно поменять для всего сайта. */
+/* Общие значения: один цвет или отступ можно поменять для всего сайта. */
 :root {
   --color-bg: #ffffff;
   --color-surface: #f7f7f7;
@@ -17,10 +17,15 @@
   --container-width: 1100px;
 }
 
-/* 2. Базовые стили. */
+/* Базовые стили. */
 * { box-sizing: border-box; }
+/* Плавные переходы по якорям, включая ссылку «Наверх». */
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: Arial, sans-serif;
   line-height: 1.5;
   color: var(--color-text);
@@ -37,15 +42,22 @@ input, select, textarea, button { font: inherit; }
   margin: 0 auto;
   padding: var(--space-lg);
 }
+/* Основное содержимое заполняет свободную высоту окна до подвала. */
+.page-main { flex: 1; width: 100%; }
 h1 { font-size: 32px; }
 h2 { font-size: 24px; }
 h3 { font-size: 20px; }
 h1, h2, h3 { margin-top: 0; }
 .section { margin-bottom: var(--space-xl); }
+/* Outline выделяет блок при наведении и не меняет его размеры. */
+.section:hover, .product-detail:hover, .contact-card:hover, .callout:hover {
+  outline: 1px solid var(--color-primary);
+  outline-offset: 6px;
+}
 .section__description { color: var(--color-muted); }
 
-/* 3. Шапка и меню. Flex располагает ссылки в один ряд. */
-.site-header, .site-footer { background-color: var(--color-surface); }
+/* Шапка и меню. Flex располагает ссылки в один ряд. */
+.site-header, .site-footer { flex-shrink: 0; background-color: var(--color-surface); }
 .site-header__logo, .site-footer__logo {
   font-weight: 700;
   color: var(--color-text);
@@ -76,7 +88,7 @@ h1, h2, h3 { margin-top: 0; }
 .breadcrumbs__current::before { content: ' / '; }
 .category-nav { display: flex; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-md); }
 
-/* 4. Общие кнопки и состояния. */
+/* Общие кнопки и состояния. */
 .button {
   display: inline-block;
   padding: var(--space-sm) var(--space-md);
@@ -96,7 +108,7 @@ h1, h2, h3 { margin-top: 0; }
   gap: var(--space-sm);
 }
 
-/* 5. Главная: обычный вводный блок, преимущества и вопросы. */
+/* Главная: обычный вводный блок, преимущества и вопросы. */
 .hero { padding: var(--space-lg); margin-bottom: var(--space-xl); background-color: #eef5ff; }
 .benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
 .benefit { padding: var(--space-md); border: 1px solid var(--color-border); }
@@ -107,7 +119,7 @@ h1, h2, h3 { margin-top: 0; }
 .faq__answer { margin-bottom: 0; }
 .callout { padding: var(--space-lg); background-color: var(--color-surface); }
 
-/* 6. Три карточки в ряд через Grid. Flex внутри карточки выравнивает кнопки. */
+/* Три карточки в ряд через Grid. Flex внутри карточки выравнивает кнопки. */
 .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
 .product-card {
   position: relative;
@@ -139,7 +151,7 @@ h1, h2, h3 { margin-top: 0; }
 .product-card--discount .product-card__badge { background-color: var(--color-danger); }
 .product-card--new .product-card__badge { background-color: var(--color-success); }
 
-/* 7. Каталог: фильтр слева, товары справа. */
+/* Каталог: фильтр слева, товары справа. */
 .catalog-layout {
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
@@ -161,9 +173,9 @@ h1, h2, h3 { margin-top: 0; }
 .catalog-filters__link { display: block; margin-top: var(--space-md); }
 .catalog-products__count { color: var(--color-muted); }
 
-/* 8. Подробное описание и таблицы. */
+/* Подробное описание и таблицы. */
 .product-detail { margin-bottom: var(--space-xl); padding: var(--space-lg); border: 1px solid var(--color-border); }
-.product-detail__image { max-width: 280px; margin-bottom: var(--space-md); }
+.product-detail__image { width: 100%; max-width: 280px; margin-bottom: var(--space-md); }
 .product-detail__tag { color: var(--color-primary); }
 .product-detail__price { font-weight: 700; }
 .product-detail__availability { color: var(--color-success); }
@@ -173,7 +185,7 @@ h1, h2, h3 { margin-top: 0; }
 .product-table__cell { padding: var(--space-sm); border: 1px solid var(--color-border); }
 .product-table thead { background-color: var(--color-surface); }
 
-/* 9. Форма: поля друг под другом, подпись над полем. */
+/* Форма: поля друг под другом, подпись над полем. */
 .order-panel { max-width: 620px; }
 .order-help { margin-top: var(--space-lg); padding: var(--space-lg); background-color: var(--color-surface); }
 .order-form__field { margin-bottom: var(--space-md); }
@@ -207,7 +219,7 @@ h1, h2, h3 { margin-top: 0; }
 .contact-card__label { margin-bottom: 0; font-weight: 700; }
 .contact-card__link { display: block; margin-top: var(--space-md); }
 
-/* 10. Фиксированная ссылка и переход к содержимому с клавиатуры. */
+/* Фиксированная ссылка и переход к содержимому с клавиатуры. */
 .back-to-top {
   position: fixed;
   right: var(--space-md);
@@ -222,8 +234,13 @@ h1, h2, h3 { margin-top: 0; }
 .skip-link { position: fixed; top: -100px; left: var(--space-md); z-index: 20; padding: var(--space-sm); background-color: white; }
 .skip-link:focus { top: var(--space-sm); }
 
-/* 11. На небольшом экране карточки и каталог становятся одной колонкой. */
+/* На небольшом экране карточки и каталог становятся одной колонкой. */
 @media (max-width: 800px) {
   .products-grid, .benefits, .catalog-layout { grid-template-columns: 1fr; }
   .catalog-filters { position: static; }
+}
+
+/* Если в системе отключены анимации, переходы по якорям мгновенные. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }

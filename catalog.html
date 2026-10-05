@@ -6,7 +6,7 @@
   <meta name="description" content="Каталог Study Store: три категории техники, цены, карточки товаров и таблица сравнения.">
   <title>Каталог товаров — Study Store</title>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/style.css?v=simple">
+  <link rel="stylesheet" href="css/style.css?v=20261005-hover">
   <script src="js/main.js?v=kr1-final" defer></script>
 </head>
 <body>
@@ -27,11 +27,11 @@
   </header>
   <main class="page-main" id="main-content" tabindex="-1">
     <nav class="breadcrumbs" aria-label="Хлебные крошки"><a class="breadcrumbs__link" href="index.html">Главная</a><span class="breadcrumbs__current" aria-current="page">Каталог</span></nav>
-    <section class="section page-intro"><h1 class="page-intro__title">Каталог товаров</h1><p class="section__description">Три категории, три понятных решения. Выбирай по задаче и сравнивай характеристики.</p><div class="category-nav" aria-label="Категории"><a class="category-nav__link" href="product.html#keyboard">Клавиатуры</a><a class="category-nav__link" href="product.html#headphones">Наушники</a><a class="category-nav__link" href="product.html#lamp">Освещение</a></div></section>
+    <section class="section page-intro"><h1 class="page-intro__title">Каталог товаров</h1><p class="section__description">Клавиатуры, наушники и настольные лампы. Описание и характеристики представлены в карточках товаров.</p><div class="category-nav" aria-label="Категории"><a class="category-nav__link" href="product.html#keyboard">Клавиатуры</a><a class="category-nav__link" href="product.html#headphones">Наушники</a><a class="category-nav__link" href="product.html#lamp">Освещение</a></div></section>
     <div class="catalog-layout">
       <aside class="catalog-filters" aria-labelledby="filters-title">
         <h2 class="catalog-filters__title" id="filters-title">Фильтры</h2>
-        <p class="catalog-filters__note" id="filter-note">Фильтрация пока недоступна. Посмотри все товары или перейди к сравнению.</p>
+        <p class="catalog-filters__note" id="filter-note">Фильтрация пока недоступна. Все товары представлены ниже.</p>
         <form class="filters-form" action="catalog.html" method="get" aria-describedby="filter-note">
           <fieldset class="filters-form__group" disabled><legend class="filters-form__legend">Категория</legend>
             <label class="filters-form__label" for="category-keys"><input id="category-keys" name="category" type="checkbox" value="keyboard"> Клавиатуры</label>
@@ -46,7 +46,7 @@
       <section class="catalog-products" aria-labelledby="products-title"><div class="section__heading"><h2 class="section__title" id="products-title">Все товары</h2><span class="catalog-products__count">3 товара</span></div><div class="products-grid products-grid--catalog">
         <article class="product-card product-card--featured">
           <span class="product-card__badge">Хит</span>
-          <a class="product-card__visual" href="product.html#keyboard" aria-label="Подробнее о Study Keys"><img class="product-card__image" src="images/keyboard.svg" width="640" height="480" alt="Клавиатура Study Keys — иллюстрация" loading="lazy"></a>
+          <a class="product-card__visual" href="product.html#keyboard" aria-label="Подробнее о Study Keys"><img class="product-card__image" src="images/keyboard.jpeg" width="447" height="447" alt="Клавиатура Study Keys — фото" loading="lazy"></a>
           <p class="product-card__category">Клавиатура</p>
           <h3 class="product-card__title"><a href="product.html#keyboard">Study Keys</a></h3>
           <p class="product-card__description">Компактная клавиатура для конспектов, кода и ежедневной работы.</p>
@@ -58,7 +58,7 @@
         </article>
         <article class="product-card product-card--new">
           <span class="product-card__badge">Новинка</span>
-          <a class="product-card__visual" href="product.html#headphones" aria-label="Подробнее о Focus Sound"><img class="product-card__image" src="images/headphones.svg" width="640" height="480" alt="Наушники Focus Sound — иллюстрация" loading="lazy"></a>
+          <a class="product-card__visual" href="product.html#headphones" aria-label="Подробнее о Focus Sound"><img class="product-card__image" src="images/headphones.jpeg" width="447" height="447" alt="Наушники Focus Sound — фото" loading="lazy"></a>
           <p class="product-card__category">Наушники</p>
           <h3 class="product-card__title"><a href="product.html#headphones">Focus Sound</a></h3>
           <p class="product-card__description">Полноразмерные наушники с микрофоном для занятий и созвонов.</p>
@@ -70,7 +70,7 @@
         </article>
         <article class="product-card product-card--discount">
           <span class="product-card__badge">Скидка</span>
-          <a class="product-card__visual" href="product.html#lamp" aria-label="Подробнее о Desk Light"><img class="product-card__image" src="images/lamp.svg" width="640" height="480" alt="Настольная лампа Desk Light — иллюстрация" loading="lazy"></a>
+          <a class="product-card__visual" href="product.html#lamp" aria-label="Подробнее о Desk Light"><img class="product-card__image" src="images/desk_lamp.jpeg" width="447" height="447" alt="Настольная лампа Desk Light — фото" loading="lazy"></a>
           <p class="product-card__category">Настольная лампа</p>
           <h3 class="product-card__title"><a href="product.html#lamp">Desk Light</a></h3>
           <p class="product-card__description">Мягкий свет и три режима яркости для чтения и работы за столом.</p>
@@ -83,7 +83,7 @@
       </div></section>
     </div>
     <p class="success-message" id="success-message" role="status" tabindex="-1" hidden></p>
-    <section class="section" id="comparison" aria-labelledby="comparison-title"><h2 class="section__title" id="comparison-title">Сравни и выбери</h2><div class="table-wrap" role="region" aria-label="Сравнение товаров" tabindex="0"><table class="product-table"><caption class="product-table__caption">Назначение, подключение и стоимость</caption><thead><tr><th class="product-table__cell" scope="col">Товар</th><th class="product-table__cell" scope="col">Категория</th><th class="product-table__cell" scope="col">Подключение / питание</th><th class="product-table__cell" scope="col">Цена</th></tr></thead><tbody>
+    <section class="section" id="comparison" aria-labelledby="comparison-title"><h2 class="section__title" id="comparison-title">Сравнение товаров</h2><div class="table-wrap" role="region" aria-label="Сравнение товаров" tabindex="0"><table class="product-table"><caption class="product-table__caption">Назначение, подключение и стоимость</caption><thead><tr><th class="product-table__cell" scope="col">Товар</th><th class="product-table__cell" scope="col">Категория</th><th class="product-table__cell" scope="col">Подключение / питание</th><th class="product-table__cell" scope="col">Цена</th></tr></thead><tbody>
           <tr><th class="product-table__cell" scope="row"><a href="product.html#keyboard">Study Keys</a></th><td class="product-table__cell">Клавиатура</td><td class="product-table__cell">USB-C, проводное</td><td class="product-table__cell">3 490 ₽</td></tr>
           <tr><th class="product-table__cell" scope="row"><a href="product.html#headphones">Focus Sound</a></th><td class="product-table__cell">Наушники</td><td class="product-table__cell">Bluetooth / кабель 3,5 мм</td><td class="product-table__cell">4 990 ₽</td></tr>
           <tr><th class="product-table__cell" scope="row"><a href="product.html#lamp">Desk Light</a></th><td class="product-table__cell">Настольная лампа</td><td class="product-table__cell">USB-C, 5 В</td><td class="product-table__cell">2 490 ₽</td></tr>
@@ -91,7 +91,7 @@
   </main>
   <footer class="site-footer" id="contacts">
     <div class="site-footer__inner">
-      <div><a class="site-footer__logo" href="index.html">Study Store</a><p class="site-footer__note">Техника для удобной учёбы.</p></div>
+      <div><a class="site-footer__logo" href="index.html">Study Store</a><p class="site-footer__note">Каталог техники для учёбы.</p></div>
       <nav class="site-footer__nav" aria-label="Разделы главной страницы">
         <a href="index.html#advantages">Преимущества</a>
         <a href="index.html#popular">Популярные товары</a>
@@ -147,7 +147,7 @@
         </div>
         <div class="order-form__field">
           <label class="order-form__label" for="order-comment">Комментарий</label>
-          <textarea class="order-form__textarea" id="order-comment" name="comment" rows="3" maxlength="1000" placeholder="Что уточнить перед выбором?"></textarea>
+          <textarea class="order-form__textarea" id="order-comment" name="comment" rows="3" maxlength="1000" placeholder="Комментарий к заявке"></textarea>
         </div>
         <div class="order-form__consent">
           <input class="order-form__checkbox" id="order-agreement" name="agreement" type="checkbox" required>
